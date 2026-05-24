@@ -10,29 +10,19 @@
 
 void openFile(char *fName);
 void getFile(char **fName);
-void setSettings(struct termios *t);
 
 int main() {
     char *fName = NULL;
-    getFile(&fName);
-    openFile(fName);
+    // getFile(&fName);
+    // openFile(fName);
     
-    // get settings
-    tcgetattr(STDIN_FILENO, &oldt);
-
-    newt = oldt;
-
     // set settings
-    newt.c_lflag &= ~ICANON;
+    switchCanon();
+    switchEcho();
 
-    // save settings
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    
     char c;
     while (c != 25) {
-        read(STDIN_FILENO, &c, 1);
-        printf("%c\n", c);
-        fflush(stdout);
+        mode();
     }
         
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
