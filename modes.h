@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <termios.h>
+#include "settings.h"
 
 
 
@@ -20,9 +21,10 @@ void mode() {
 }
 
 void insertMode() {
+    switchEcho();
+    
     char input;
-    scanf("%c", &input);
-    while (input != '^Y') {
+    while (input != 27) {
         printf("hi\n");
         scanf("%c", &input);
     }

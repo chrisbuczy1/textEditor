@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>
-#include <unistd.h>
 #include "modes.h"
 #include "settings.h"
 
@@ -13,10 +11,11 @@ void getFile(char **fName);
 
 int main() {
     char *fName = NULL;
+    struct termios oldt, newt;
+    
     // getFile(&fName);
     // openFile(fName);
     
-    // set settings
     switchCanon();
     switchEcho();
 
@@ -25,7 +24,7 @@ int main() {
         mode();
     }
         
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    restoreSettings();
     return 0;
 }
 
