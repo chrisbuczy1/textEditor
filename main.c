@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "modes.h"
-#include "settings.h"
 
 #define CLEAR "\033[2J"
 
@@ -10,21 +6,23 @@ void openFile(char *fName);
 void getFile(char **fName);
 
 int main() {
+    // set beginning settings
     char *fName = NULL;
     struct termios oldt, newt;
+    getSettings(&oldt);
+    newt = oldt;
     
     // getFile(&fName);
     // openFile(fName);
+    switchCanon(&newt);
+    switchEcho(&newt);
     
-    switchCanon();
-    switchEcho();
-
-    char c;
-    while (c != 25) {
-        mode();
-    }
-        
-    restoreSettings();
+    // main loop
+    char **fileText;
+    mode(&newt);
+    
+    // set old settings
+    restoreSettings(&oldt);
     return 0;
 }
 
@@ -62,4 +60,12 @@ void getFile(char **fName) {
         return;
     }
     *space = '\0';
+}
+
+long getFileSize(FILE *file) {
+    fseek(file, 0, SEEK_END);
+    long size = ftell(f);
+    rewind(f);
+    
+    return size;
 }
