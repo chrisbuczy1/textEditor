@@ -1,11 +1,16 @@
 #include "modes.h"
 
 #define CLEAR "\033[2J"
+#define HOME "\033[H"
 
 void openFile(char *fName);
 void getFile(char **fName);
 
 int main() {
+    printf(CLEAR);
+    printf(HOME);
+    fflush(stdout);
+
     // set beginning settings
     char *fName = NULL;
     struct termios oldt, newt;
@@ -41,7 +46,7 @@ void openFile(char *fName) {
     while (getline(&line, &lineSize, edit) != -1) {
         printf("%s", line);
     }
-    printf("\033[H");
+    printf(HOME);
 }
 
 void getFile(char **fName) {
@@ -64,8 +69,8 @@ void getFile(char **fName) {
 
 long getFileSize(FILE *file) {
     fseek(file, 0, SEEK_END);
-    long size = ftell(f);
-    rewind(f);
+    long size = ftell(file);
+    rewind(file);
     
     return size;
 }

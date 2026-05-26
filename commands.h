@@ -31,8 +31,11 @@ void insert(char **buffer, int size, int count, char input) {
     }
 }
 
+void delChar(char **buffer, int size, int count, char input) {
+
+}
+
 void setCommands(func *cList) {
     cList['i'] = insertMode;
     cList['I'] = insertMode;
-    cList[127] = backspace;
 }
