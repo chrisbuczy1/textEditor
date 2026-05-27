@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra
 
-all: myeditor
+all: myeditor clean
 
 myeditor: main.o commands.o modes.o settings.o
 	$(CC) main.o commands.o modes.o settings.o -o myeditor
@@ -19,4 +19,4 @@ settings.o: settings.c settings.h types.h
 	$(CC) $(CFLAGS) -c settings.c
 
 clean:
-	rm -f *.o myeditor
+	rm -f *.o

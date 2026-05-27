@@ -31,6 +31,7 @@ int main() {
     return 0;
 }
 
+// open file
 void openFile(char *fName) {
     // open file
     FILE *edit = fopen(fName, "a+");
@@ -49,6 +50,7 @@ void openFile(char *fName) {
     printf(HOME);
 }
 
+// get file name
 void getFile(char **fName) {
     // get file name
     printf("enter a file name: ");
@@ -67,6 +69,7 @@ void getFile(char **fName) {
     *space = '\0';
 }
 
+// get amount of chars in file
 long getFileSize(FILE *file) {
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
