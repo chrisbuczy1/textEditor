@@ -3,7 +3,6 @@
 
 void insertMode(editor *user) {
     // while input does not equal esc
-    user->input = 0;
     while (user->input != ESC) {
         read(STDIN_FILENO, &(user->input), 1);
         printf("%c", user->input);

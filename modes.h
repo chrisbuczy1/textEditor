@@ -6,7 +6,7 @@
 #include "commands.h"
 #define ESC 27
 
-void mode(struct termios *settings);
+void mode(editor *user);
 void save(FILE **file);
 
 #endif

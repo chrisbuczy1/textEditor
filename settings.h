@@ -7,10 +7,11 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include "types.h"
 
-void switchCanon(struct termios *settings);
-void switchEcho(struct termios *settings);
-void restoreSettings(struct termios *settings);
-void getSettings(struct termios *old);
+void switchCanon(editor *user);
+void switchEcho(editor *user);
+void restoreSettings(editor *user);
+void getSettings(editor *user);
 
 #endif

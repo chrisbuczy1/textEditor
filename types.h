@@ -7,12 +7,14 @@ typedef void (*func)(struct editor *);
 typedef struct editor {
     int xpos;
     int ypos;
-    char buffer[30];
+    char *buffer;
     char input;
+    char mode;
     int bufferSize;
     int typeCount;
     func *cList;
     struct termios settings;
+    struct termios old;
 } editor;
 
 #endif

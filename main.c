@@ -10,24 +10,34 @@ int main() {
     printf(CLEAR);
     printf(HOME);
     fflush(stdout);
-
     // set beginning settings
     char *fName = NULL;
     struct termios oldt, newt;
-    getSettings(&oldt);
-    newt = oldt;
+    editor user = {
+        .xpos = 0,
+        .ypos = 0,
+        .buffer = calloc(30, 1),
+        .input = '\0',
+        .mode = '\0',
+        .bufferSize = 30,
+        .typeCount = 0,
+        .cList = calloc(256, sizeof(func)),
+        .settings = newt,
+        .old = oldt
+    };
+    getSettings(&user);
     
     // getFile(&fName);
     // openFile(fName);
-    switchCanon(&newt);
-    switchEcho(&newt);
+    switchCanon(&user);
+    switchEcho(&user);
     
     // main loop
     char **fileText;
-    mode(&newt);
+    mode(&user);
     
     // set old settings
-    restoreSettings(&oldt);
+    restoreSettings(&user);
     return 0;
 }
 

@@ -1,17 +1,15 @@
 #include "modes.h"
 
-void mode(struct termios *settings) {
+void mode(editor *user) {
     
     // command of functions for each character
-    func commands[256] = {0};
-    setCommands(commands);
-    char mode = 0;
+    setCommands(user);
     
     // user presses escape to exit
-    while (mode != ESC) {
+    while (user->mode != ESC) {
         read(STDIN_FILENO, &mode, 1);
-        if (commands[(int) mode] != 0) {
-            commands[(int) mode](settings);
+        if (user->cList[(int) user->mode] != 0) {
+            user->cList[(int) user->mode](user);
         }
     } 
     return;
