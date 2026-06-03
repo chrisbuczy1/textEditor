@@ -1,3 +1,6 @@
+#ifndef SETTINGS_H
+#define SETTINGS_H
+
 // also including basic libraries
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,3 +13,4 @@ void switchEcho(struct termios *settings);
 void restoreSettings(struct termios *settings);
 void getSettings(struct termios *old);
 
+#endif

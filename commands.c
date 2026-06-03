@@ -1,38 +1,40 @@
 #include "commands.h"
 #include "types.h"
 
-void insertMode(void *s) {
-    
-    // make buffer
-    char *gBuffer = malloc(30);
-    int count = 0;
-    
+void insertMode(editor *user) {
     // while input does not equal esc
-    char input = 0;
-    while (input != ESC) {
-        read(STDIN_FILENO, &input, 1);
-        printf("%c", input);
+    user->input = 0;
+    while (user->input != ESC) {
+        read(STDIN_FILENO, &(user->input), 1);
+        printf("%c", user->input);
         fflush(stdout);
     }
 }
 
 // function to insert characters
-void insert(char **buffer, int *size, int count, char input) {
-    if ((count - 1) < *size) {
-        (*buffer)[count - 1] = input;
+void insert(editor *user) {
+    // if ((count - 1) < *size) {
+    //     (*buffer)[count - 1] = input;
+    // } else {
+    //     *size *= 2;
+    //     *buffer = realloc(*buffer, *size);
+    //     (*buffer)[count - 1] = input;
+    // }
+    if (user->typeCount - 1 < user->bufferSize) {
+        user->buffer[user->typeCount - 1] = user->input;
     } else {
-        *size *= 2;
-        *buffer = realloc(*buffer, *size);
-        (*buffer)[count - 1] = input;
+        user->bufferSize *= 2;
+        user->bufferSize = realloc(user->buffer, user->bufferSize);
+        user->buffer[user->typeCount - 1] = user->input;
     }
-    count++;
+    user->typeCount++;
 }
 
 void delChar(char **buffer, int size, int count, char input) {
 
 }
 
-void setCommands(func *cList) {
-    cList['i'] = insertMode;
-    cList['I'] = insertMode;
+void setCommands(editor *user) {
+    user->cList['i'] = insertMode;
+    user->cList['I'] = insertMode;
 }
