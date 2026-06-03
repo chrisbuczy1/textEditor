@@ -3,7 +3,7 @@
 void mode(editor *user) {
     
     // command of functions for each character
-    setCommands(user);
+    setCommands(&user);
     
     // user presses escape to exit
     while (user->mode != ESC) {

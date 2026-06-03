@@ -33,7 +33,6 @@ int main() {
     switchEcho(&user);
     
     // main loop
-    char **fileText;
     mode(&user);
     
     // set old settings

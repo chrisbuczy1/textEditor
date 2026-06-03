@@ -11,6 +11,7 @@
 void insertMode(editor *user);
 void backspace(editor *user);
 void insert(editor *user);
+void setCommands(editor *user);
 void delChar(char **buffer, int size, int count, char input);
 
 #endif
