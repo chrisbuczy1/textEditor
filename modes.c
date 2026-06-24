@@ -3,19 +3,22 @@
 void mode(editor *user) {
     
     // command of functions for each character
-    setCommands(&user);
+    setCommands(user);
     
     // user presses escape to exit
+    // otherwise goes into user mode
     while (user->mode != ESC) {
-        read(STDIN_FILENO, &mode, 1);
-        if (user->cList[(int) user->mode] != 0) {
-            user->cList[(int) user->mode](user);
-        }
-    } 
+        read(STDIN_FILENO, &(user->mode), 1);
+        if (user->cList[user->mode] != 0) user->cList[user->mode](user);
+    }
     return;
 }
 
-
+// free memory
+void freeUser(editor *user) {
+    free(user->cList);
+    free(user->buffer);
+}
 
 void save(FILE **file) {
     

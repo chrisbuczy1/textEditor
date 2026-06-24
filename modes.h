@@ -8,5 +8,6 @@
 
 void mode(editor *user);
 void save(FILE **file);
+void freeUser(editor *user);
 
 #endif

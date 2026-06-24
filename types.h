@@ -2,9 +2,11 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef void (*func)(struct editor *);
+typedef struct editor editor;
 
-typedef struct editor {
+typedef void (*func)(editor *);
+
+struct editor {
     int xpos;
     int ypos;
     char *buffer;
@@ -15,6 +17,6 @@ typedef struct editor {
     func *cList;
     struct termios settings;
     struct termios old;
-} editor;
+};
 
 #endif

@@ -1,5 +1,6 @@
 #include "commands.h"
 #include "types.h"
+#include <stdlib.h>
 
 void insertMode(editor *user) {
     // while input does not equal esc
@@ -12,18 +13,11 @@ void insertMode(editor *user) {
 
 // function to insert characters
 void insert(editor *user) {
-    // if ((count - 1) < *size) {
-    //     (*buffer)[count - 1] = input;
-    // } else {
-    //     *size *= 2;
-    //     *buffer = realloc(*buffer, *size);
-    //     (*buffer)[count - 1] = input;
-    // }
     if (user->typeCount - 1 < user->bufferSize) {
         user->buffer[user->typeCount - 1] = user->input;
     } else {
         user->bufferSize *= 2;
-        user->bufferSize = realloc(user->buffer, user->bufferSize);
+        user->buffer = realloc(user->buffer, user->bufferSize);
         user->buffer[user->typeCount - 1] = user->input;
     }
     user->typeCount++;

@@ -26,6 +26,7 @@ int main() {
         .old = oldt
     };
     getSettings(&user);
+    user.settings = user.old;
     
     // getFile(&fName);
     // openFile(fName);
@@ -37,6 +38,9 @@ int main() {
     
     // set old settings
     restoreSettings(&user);
+
+    // exit
+    freeUser(&user);
     return 0;
 }
 
