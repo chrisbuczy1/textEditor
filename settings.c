@@ -14,7 +14,7 @@ void switchEcho(editor *user) {
 
 // restore old settings
 void restoreSettings(editor *user) {
-    tcsetattr(STDIN_FILENO, TCSANOW, &(user->settings));
+    tcsetattr(STDIN_FILENO, TCSANOW, &(user->old));
 }
 
 // get current settings
