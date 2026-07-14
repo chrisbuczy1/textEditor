@@ -1,0 +1,8 @@
+# executable
+myeditor
+
+# sample text file
+a.txt
+
+# vim swap files
+*.swp
