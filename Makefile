@@ -1,22 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Iinclude
 
-all: myeditor clean
+SRC = $(wildcard src/*.c)
+OBJ = $(SRC:.c=.o)
 
-myeditor: main.o commands.o modes.o settings.o
-	$(CC) main.o commands.o modes.o settings.o -o myeditor
+TARGET = myeditor
 
-main.o: main.c commands.h modes.h settings.h types.h
-	$(CC) $(CFLAGS) -c main.c
+all: $(TARGET) clean
 
-commands.o: commands.c commands.h types.h
-	$(CC) $(CFLAGS) -c commands.c
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET)
 
-modes.o: modes.c modes.h types.h settings.h
-	$(CC) $(CFLAGS) -c modes.c
-
-settings.o: settings.c settings.h types.h
-	$(CC) $(CFLAGS) -c settings.c
+src/%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f *.o
