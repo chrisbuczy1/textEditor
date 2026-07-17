@@ -1,10 +1,5 @@
 #include "modes.h"
-
-#define CLEAR "\033[2J"
-#define HOME "\033[H"
-
-void openFile(char *fName);
-void getFile(char **fName);
+#include "main.h"
 
 int main() {
     printf(CLEAR);
@@ -21,9 +16,17 @@ int main() {
         .mode = '\0',
         .bufferSize = 30,
         .typeCount = 0,
+        .fileLines = 0,
         .cList = calloc(256, sizeof(func)),
+        .insertCList = calloc(256, sizeof(func)),
         .settings = newt,
-        .old = oldt
+        .old = oldt,
+        .currentLine = {
+            .length = 0,
+            .capacity = 30,
+            .data = NULL
+        },
+        .file = NULL
     };
     getSettings(&user);
     user.settings = user.old;

@@ -11,7 +11,6 @@ void mode(editor *user) {
         read(STDIN_FILENO, &(user->mode), 1);
         if (user->cList[user->mode] != 0) user->cList[user->mode](user);
     }
-    return;
 }
 
 // free memory
