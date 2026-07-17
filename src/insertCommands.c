@@ -33,6 +33,8 @@ void moveDown(editor *user) {
 }
 
 void setInsertCommands(editor *user) {
+
+    // arrow key movement
     user->insertCList[37] = moveLeft;
     user->insertCList[38] = moveUp;
     user->insertCList[39] = moveRight;
