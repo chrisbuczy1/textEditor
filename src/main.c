@@ -26,7 +26,8 @@ int main() {
             .capacity = 30,
             .data = NULL
         },
-        .file = NULL
+        .file = NULL,
+        .keySequence = {0}
     };
     getSettings(&user);
     user.settings = user.old;

@@ -32,6 +32,10 @@ void moveDown(editor *user) {
     }
 }
 
+void pressedEsc(editor *user) {
+
+}
+
 void setInsertCommands(editor *user) {
 
     // arrow key movement
@@ -39,4 +43,5 @@ void setInsertCommands(editor *user) {
     user->insertCList[38] = moveUp;
     user->insertCList[39] = moveRight;
     user->insertCList[40] = moveDown;
+    user->insertCList[ESC] = pressedEsc;
 }

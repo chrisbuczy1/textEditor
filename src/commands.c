@@ -6,14 +6,22 @@
 void insertMode(editor *user) {
     // while user doesn't input esc
     while (user->input != ESC) {
-        read(STDIN_FILENO, &(user->input), 1);
+        int error = read(STDIN_FILENO, &(user->input), 1);
         
-        if (user->insertCList[user->input] != 0) user->insertCList[user->input](user);
-        else {
-            printf("%c", user->input);
-            fflush(stdout);
-            user->xpos++;
+        // if user presses key that sends multiple bytes
+        if (error != 1) {
+            read(STDIN_FILENO, user->keySequence[0], 1);
+            read(STDIN_FILENO, user->keySequence[1], 1);
+            user->insertCList[ESC](user);
+        } else {
+            if (user->insertCList[user->input] != 0) user->insertCList[user->input](user);
+            else {
+                printf("%c", user->input);
+                fflush(stdout);
+                user->xpos++;
+            }
         }
+        
         
     }
 

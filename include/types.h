@@ -28,6 +28,7 @@ struct editor {
     int bufferSize;
     int typeCount;
     int fileLines;
+    char keySequence[2];
     func *cList;
     func *insertCList;
     struct termios settings;
