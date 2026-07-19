@@ -23,12 +23,11 @@ struct editor {
     int xpos;
     int ypos;
     char *buffer;
-    char input;
-    char mode;
     int bufferSize;
     int typeCount;
     int fileLines;
-    char keySequence[2];
+    char keySequence[6];
+    int keySequenceLen;
     func *cList;
     func *insertCList;
     struct termios settings;

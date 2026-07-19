@@ -9,9 +9,17 @@ void mode(editor *user) {
     
     // user presses escape to exit
     // otherwise goes into user mode
-    while (user->mode != ESC) {
-        read(STDIN_FILENO, &(user->mode), 1);
-        if (user->cList[user->mode] != 0) user->cList[user->mode](user);
+    while (user->keySequence[0] != ESC && user->keySequenceLen != 1) {
+        int keySequence = read(STDIN_FILENO, &(user->keySequence[0]), 1);
+
+        // if there user clicked key that sends sequence
+        if (keySequence != 1) {
+            user->cList[ESC](user);
+            user->keySequenceLen++;
+        }
+
+        // for regular commands
+        else if (user->cList[user->keySequence[0]] != 0) user->cList[user->keySequence[0]](user);
     }
 }
 
