@@ -40,7 +40,7 @@ void insert(editor *user) {
     user->typeCount++;
 }
 
-void delChar(char **buffer, int size, int count, char input) {
+void delChar(editor *user) {
 
 }
 

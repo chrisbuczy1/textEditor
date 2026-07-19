@@ -8,5 +8,6 @@ void moveUp(editor *user);
 void moveRight(editor *user);
 void moveLeft(editor *user);
 void moveDown(editor *user);
+void pressedEsc(editor *user);
 
 #endif
