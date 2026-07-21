@@ -51,14 +51,43 @@ keys like arrow keys, home, delete, etc.
 */ 
 void parseKeySequence(editor *user) {
     // keep reading bytes until theres nothing to read
-    while (read(STDIN_FILENO, user->keySequence[user->keySequenceLen], 1) == 1) user->keySequenceLen++;
+    while (read(STDIN_FILENO, user->keySequence[user->keySequenceLen], 1) != 1) {
+        user->keySequenceLen++;
+        printf("\n%d", user->keySequenceLen);
+    }
 
     determineKey(user);
 }
 
 // determines key based of keySequence
-void determineKey(user) {
-    
+void determineKey(editor *user) {
+    if (user->keySequenceLen == 1) return ESC;
+
+    if (user->keySequence[1] == '[') {
+        puts("hi");
+        
+        switch (user->keySequence[2]) {
+            case 'A':
+                printf(CURSOR_UP);
+                break;
+
+            case 'B':
+                return printf(CURSOR_DOWN);
+                break;
+
+            case 'C':
+                printf(CURSOR_RIGHT);
+                break;
+
+            case 'D':
+                printf(CURSOR_LEFT);
+                break;
+        }
+    }
+
+    // reset keySequence and keySequenceLen
+    memset(user->keySequence, 0, sizeof(user->keySequence));
+    user->keySequenceLen = 0;
 }
 
 // set each character to a command in normal mode
