@@ -12,14 +12,14 @@ void mode(editor *user) {
     while (user->keySequence[0] != ESC && user->keySequenceLen != 1) {
         int keySequence = read(STDIN_FILENO, &(user->keySequence[0]), 1);
 
-        // if there user clicked key that sends sequence
+        // if the user clicked key that sends sequence
         if (keySequence != 1) {
             user->cList[ESC](user);
             user->keySequenceLen++;
         }
 
         // for regular commands
-        else if (user->cList[user->keySequence[0]] != 0) user->cList[user->keySequence[0]](user);
+        else if (user->cList[user->keySequence[0]] != NULL) user->cList[user->keySequence[0]](user);
     }
 }
 
