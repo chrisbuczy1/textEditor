@@ -16,6 +16,24 @@ void switchEcho(editor *user) {
 void restoreSettings(editor *user) {
     tcsetattr(STDIN_FILENO, TCSANOW, &(user->old));
 }
+/*
+read() waits for a byte wether there is one or not
+this function sets a time interval where read() will stop looking for bytes after it
+*/ 
+int readyToRead(editor *user) {
+    
+    // set FD_SET
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(STDIN_FILENO, &set);
+
+    // return 1 if stdin is ready to be read
+    return select(STDIN_FILENO + 1,
+    &set,
+    NULL,
+    NULL,
+    &user->timeout);
+}
 
 // get current settings
 void getSettings(editor *user) {

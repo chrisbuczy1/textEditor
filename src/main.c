@@ -26,7 +26,11 @@ int main() {
         },
         .file = NULL,
         .keySequence = {0},
-        .keySequenceLen = 0
+        .keySequenceLen = 0,
+        .timeout = {
+            .tv_sec = 0,
+            .tv_usec = 10000
+        }
     };
     getSettings(&user);
     user.settings = user.old;

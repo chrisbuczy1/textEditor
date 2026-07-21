@@ -2,6 +2,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#include <sys/select.h>
+
 typedef struct editor editor;
 typedef struct line line;
 
@@ -34,6 +36,7 @@ struct editor {
     struct termios old;
     struct line currentLine;
     struct file file;
+    struct timeval timeout;
 };
 
 #endif
