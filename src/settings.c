@@ -27,7 +27,7 @@ int readyToRead(editor *user) {
     FD_ZERO(&set);
     FD_SET(STDIN_FILENO, &set);
 
-    // return 1 if stdin is ready to be read
+    // return 1 if stdin has more bytes to read
     return select(STDIN_FILENO + 1,
     &set,
     NULL,

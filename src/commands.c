@@ -53,24 +53,27 @@ void parseKeySequence(editor *user) {
     // keep reading bytes until theres nothing to read
     while (user->keySequenceLen < sizeof(user->keySequence)) {
 
-        if (readyToRead(user) >= 0) break;
+        if (readyToRead(user) > 0) {
+            read(STDIN_FILENO, &user->keySequence[user->keySequenceLen], 1);
+            user->keySequenceLen++;
+        }
 
-        read(STDIN_FILENO, &user->keySequence[user->keySequenceLen], 1);
-        user->keySequenceLen++;
+        
     }
 
-    
+    // for (int i = 0; i < user->keySequenceLen; i++) printf("\n%c", user->keySequence[i]);
     determineKey(user);
 }
 
 // determines key based of keySequence
 void determineKey(editor *user) {
-    printf("hi");
-    fflush(stdout);
-    if (user->keySequenceLen == 1) return ESC;
 
+    // if ESC clicked, exit function and exit mode
+    if (user->keySequenceLen == 1) return;
+
+
+    // otherwise, move cursor
     if (user->keySequence[1] == '[') {
-        puts("hi");
         
         switch (user->keySequence[2]) {
             case 'A':
@@ -79,7 +82,7 @@ void determineKey(editor *user) {
                 break;
 
             case 'B':
-                return printf(CURSOR_DOWN);
+                printf(CURSOR_DOWN);
                 fflush(stdout);
                 break;
 
@@ -98,6 +101,7 @@ void determineKey(editor *user) {
     // reset keySequence and keySequenceLen
     memset(user->keySequence, 0, sizeof(user->keySequence));
     user->keySequenceLen = 0;
+
 }
 
 // set each character to a command in normal mode

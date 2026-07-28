@@ -14,5 +14,6 @@ void switchCanon(editor *user);
 void switchEcho(editor *user);
 void restoreSettings(editor *user);
 void getSettings(editor *user);
+int readyToRead(editor *user);
 
 #endif
