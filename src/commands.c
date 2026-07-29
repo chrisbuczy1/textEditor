@@ -53,15 +53,15 @@ void parseKeySequence(editor *user) {
     // keep reading bytes until theres nothing to read
     while (user->keySequenceLen < sizeof(user->keySequence)) {
 
-        if (readyToRead(user) > 0) {
+        if (readyToRead(user)) {
             read(STDIN_FILENO, &user->keySequence[user->keySequenceLen], 1);
             user->keySequenceLen++;
         }
 
+        else break;
         
     }
 
-    // for (int i = 0; i < user->keySequenceLen; i++) printf("\n%c", user->keySequence[i]);
     determineKey(user);
 }
 
