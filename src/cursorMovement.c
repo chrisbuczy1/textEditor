@@ -1,4 +1,4 @@
-#include "insertCommands.h"
+#include "cursorMovement.h"
 
 void moveLeft(editor *user) {
     if (user->xpos > 0) {

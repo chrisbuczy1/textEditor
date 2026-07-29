@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "types.h"
 #include <stdlib.h>
-#include "insertCommands.h"
+#include "cursorMovement.h"
 
 void insertMode(editor *user) {
     // while user doesn't input esc
