@@ -6,3 +6,6 @@ a.txt
 
 # vim swap files
 *.swp
+
+# object files
+*.o

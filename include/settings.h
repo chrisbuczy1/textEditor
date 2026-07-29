@@ -8,10 +8,12 @@
 #include <termios.h>
 #include <unistd.h>
 #include "types.h"
+#include <sys/select.h>
 
 void switchCanon(editor *user);
 void switchEcho(editor *user);
 void restoreSettings(editor *user);
 void getSettings(editor *user);
+int readyToRead(editor *user);
 
 #endif
