@@ -2,37 +2,39 @@
 #include "types.h"
 
 // open file
-void openFile(char *fName) {
+void openFile(editor *user) {
     // open file
-    FILE *edit = fopen(fName, "a+");
+    FILE *edit = fopen(user->file.name, "a+");
     if (edit == NULL) {
         printf("failed to open file! ");
         return;
     }
     
     // display file
-    printf("%s", CLEAR);
+    clearScreen();
     size_t lineSize;
     char *line = NULL;
     while (getline(&line, &lineSize, edit) != -1) {
         printf("%s", line);
+        fflush(stdout);
     }
     printf(HOME);
+    fflush(stdout);
 }
 
 // get file name
-void getFile(char **fName) {
+void getFile(editor *user) {
     // get file name
     printf("enter a file name: ");
     size_t size;
-    size_t len = getline(fName, &size, stdin);
+    size_t len = getline(&user->file.name, &size, stdin);
     
     
     // get first string
-    char *space = strchr(*fName, ' ');
+    char *space = strchr(user->file.name, ' ');
     if (space == NULL) {
-        if ((*fName)[len - 1] == '\n') {
-            (*fName)[len - 1] = '\0';
+        if ((user->file.name)[len - 1] == '\n') {
+            (user->file.name)[len - 1] = '\0';
         }
         return;
     }
@@ -46,4 +48,9 @@ long getFileSize(FILE *file) {
     rewind(file);
     
     return size;
+}
+
+void clearScreen() {
+    printf("%s%s", CLEAR, HOME);
+    fflush(stdout);
 }

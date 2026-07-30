@@ -20,7 +20,8 @@ struct line {
 };
 
 struct file {
-    int length;
+    int numLines;
+    line *lines;
     FILE *file;
     char *name;
 };

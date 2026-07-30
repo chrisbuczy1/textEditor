@@ -1,7 +1,11 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-void openFile(char *fName);
-void getFile(char **fName);
+#include "types.h"
+#include <stdio.h>
+
+void openFile(editor *user);
+void getFile(editor *user);
+long getFileSize(FILE *file);
 
 #endif
