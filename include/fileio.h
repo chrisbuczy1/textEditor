@@ -7,5 +7,6 @@
 void openFile(editor *user);
 void getFile(editor *user);
 long getFileSize(FILE *file);
+void clearScreen();
 
 #endif

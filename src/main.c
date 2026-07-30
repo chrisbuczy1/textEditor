@@ -24,7 +24,13 @@ int main() {
             .capacity = 30,
             .data = NULL
         },
-        .file = {NULL},
+        .file = {
+            .numLines = NULL,
+            .lines = calloc(sizeof(line), 100),
+            .capacity = 100,
+            .file = NULL,
+            .name = NULL
+        },
         .keySequence = {0},
         .keySequenceLen = 0,
         .timeout = {

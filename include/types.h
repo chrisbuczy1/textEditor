@@ -22,6 +22,7 @@ struct line {
 struct file {
     int numLines;
     line *lines;
+    int capacity;
     FILE *file;
     char *name;
 };

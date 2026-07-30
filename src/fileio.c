@@ -13,10 +13,14 @@ void openFile(editor *user) {
     // display file
     clearScreen();
     size_t lineSize;
-    char *line = NULL;
-    while (getline(&line, &lineSize, edit) != -1) {
-        printf("%s", line);
+    char *data = NULL;
+
+    // print lines and get all needed info on each line
+    // add line to editor struct
+    while (getline(&data, &lineSize, edit) != -1) {
+        printf("%s", data);
         fflush(stdout);
+        user->file.lines[user->file.numLines++] = (line) {strlen(data), strlen(data), data};
     }
     printf(HOME);
     fflush(stdout);
@@ -42,13 +46,13 @@ void getFile(editor *user) {
 }
 
 // get amount of chars in file
-long getFileSize(FILE *file) {
-    fseek(file, 0, SEEK_END);
-    long size = ftell(file);
-    rewind(file);
+// long getFileSize(FILE *file) {
+//     fseek(file, 0, SEEK_END);
+//     long size = ftell(file);
+//     rewind(file);
     
-    return size;
-}
+//     return size;
+// }
 
 void clearScreen() {
     printf("%s%s", CLEAR, HOME);
