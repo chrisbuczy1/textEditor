@@ -7,7 +7,7 @@
 
 
 void mode(editor *user);
-void save(FILE **file);
+void save(editor *user);
 void freeUser(editor *user);
 
 #endif

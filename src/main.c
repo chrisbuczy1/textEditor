@@ -1,11 +1,12 @@
 #include "normalMode.h"
+#include "fileio.h"
 
 int main() {
-    printf(CLEAR);
-    printf(HOME);
+    
+    write(STDOUT_FILENO, CLEAR, 4);
+    write(STDOUT_FILENO, HOME, 3);
     fflush(stdout);
     // set beginning settings
-    char *fName = NULL;
     struct termios oldt, newt;
     editor user = {
         .xpos = 0,
@@ -23,7 +24,7 @@ int main() {
             .capacity = 30,
             .data = NULL
         },
-        .file = NULL,
+        .file = {NULL},
         .keySequence = {0},
         .keySequenceLen = 0,
         .timeout = {
@@ -31,6 +32,11 @@ int main() {
             .tv_usec = 10000
         }
     };
+
+    // file stuff
+    getFile(&user);
+    openFile(&user);
+
     getSettings(&user);
     user.settings = user.old;
     

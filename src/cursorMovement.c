@@ -25,7 +25,7 @@ void moveRight(editor *user) {
 }
 
 void moveDown(editor *user) {
-    if (user->ypos < user->file.length) {
+    if (user->ypos < user->file.numLines) {
         user->ypos++;
         printf(CURSOR_DOWN);
         fflush(stdin);
