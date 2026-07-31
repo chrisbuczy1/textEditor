@@ -21,8 +21,11 @@ void openFile(editor *user) {
     while ((len = getline(&data, &lineSize, edit)) != -1) {
         printf("%s", data);
         fflush(stdout);
-        user->file.lines[user->file.numLines++] = (line) {len, len, data};
+        user->file.lines[user->file.numLines++] = (line) {len - 1, len - 1, data}; // len - 2 gives string len minus \n and \0
     }
+
+    user->file.numLines--;
+    user->file.lines[user->file.numLines].length++;
     printf(HOME);
     fflush(stdout);
 }
