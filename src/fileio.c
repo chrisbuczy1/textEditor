@@ -13,14 +13,15 @@ void openFile(editor *user) {
     // display file
     clearScreen();
     size_t lineSize;
+    size_t len;
     char *data = NULL;
 
     // print lines and get all needed info on each line
     // add line to editor struct
-    while (getline(&data, &lineSize, edit) != -1) {
+    while ((len = getline(&data, &lineSize, edit)) != -1) {
         printf("%s", data);
         fflush(stdout);
-        user->file.lines[user->file.numLines++] = (line) {strlen(data), strlen(data), data};
+        user->file.lines[user->file.numLines++] = (line) {len, len, data};
     }
     printf(HOME);
     fflush(stdout);

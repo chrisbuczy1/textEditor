@@ -77,22 +77,22 @@ void determineKey(editor *user) {
         
         switch (user->keySequence[2]) {
             case 'A':
-                printf(CURSOR_UP);
+                moveLeft(user);
                 fflush(stdout);
                 break;
 
             case 'B':
-                printf(CURSOR_DOWN);
+                moveDown(user);
                 fflush(stdout);
                 break;
 
             case 'C':
-                printf(CURSOR_RIGHT);
+                moveRight(user);
                 fflush(stdout);
                 break;
 
             case 'D':
-                printf(CURSOR_LEFT);
+                moveLeft(user);
                 fflush(stdout);
                 break;
         }

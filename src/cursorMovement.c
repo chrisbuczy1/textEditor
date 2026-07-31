@@ -6,6 +6,16 @@ void moveLeft(editor *user) {
         printf(CURSOR_LEFT);
         fflush(stdin);
     }
+    else {
+        if (user->ypos > 0) {
+            user->ypos--;
+            printf(CURSOR_UP);
+            while (user->xpos < user->file.lines[user->ypos].length) {
+                printf(CURSOR_RIGHT);
+                user->xpos++;
+            }
+        }
+    }
 }
 
 void moveUp(editor *user) {
@@ -17,10 +27,19 @@ void moveUp(editor *user) {
 }
 
 void moveRight(editor *user) {
-    if (user->xpos < user->currentLine.length) {
-        user->ypos--;
-        printf(CURSOR_UP);
+    if (user->xpos < user->file.lines[user->ypos].length) {
+        user->xpos++;
+        printf(CURSOR_RIGHT);
         fflush(stdin);
+    } else {
+        if (user->ypos < user->file.numLines) {
+            user->ypos++;
+            printf(CURSOR_DOWN);
+            while (user->xpos > 0) {
+                user->xpos--;
+                printf(CURSOR_LEFT);
+            }
+        }
     }
 }
 
