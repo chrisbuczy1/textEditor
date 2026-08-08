@@ -77,7 +77,7 @@ void determineKey(editor *user) {
         
         switch (user->keySequence[2]) {
             case 'A':
-                moveLeft(user);
+                moveUp(user);
                 fflush(stdout);
                 break;
 

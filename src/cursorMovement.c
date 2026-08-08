@@ -1,11 +1,13 @@
 #include "cursorMovement.h"
 
 void moveLeft(editor *user) {
+
+    // regular left movement
     if (user->xpos > 0) {
         user->xpos--;
         printf(CURSOR_LEFT);
-        fflush(stdin);
     }
+    // left movement if user reaches end of line
     else {
         if (user->ypos > 0) {
             user->ypos--;
@@ -20,18 +22,29 @@ void moveLeft(editor *user) {
 
 void moveUp(editor *user) {
     if (user->ypos > 0) {
-        user->ypos--;
+
+        // if line above is smaller
+        if (user->xpos > user->file.lines[--user->ypos].length) {
+            while (user->xpos > user->file.lines[user->ypos].length) {
+                printf(CURSOR_LEFT);
+                user->xpos--;
+            }
+        }
+
+        // regular case
         printf(CURSOR_UP);
-        fflush(stdin);
     }
 }
 
 void moveRight(editor *user) {
+    // regular right movement
     if (user->xpos < user->file.lines[user->ypos].length) {
         user->xpos++;
         printf(CURSOR_RIGHT);
-        fflush(stdin);
-    } else {
+    } 
+
+    // right movement if user reaches end of line
+    else {
         if (user->ypos < user->file.numLines) {
             user->ypos++;
             printf(CURSOR_DOWN);
@@ -47,7 +60,6 @@ void moveDown(editor *user) {
     if (user->ypos < user->file.numLines) {
         user->ypos++;
         printf(CURSOR_DOWN);
-        fflush(stdin);
     }
 }
 
