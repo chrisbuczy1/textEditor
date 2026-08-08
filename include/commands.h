@@ -16,9 +16,6 @@ typedef enum {
     ARROW_LEFT
 } Key;
 
-void insertMode(editor *user);
-void backspace(editor *user);
-void insert(editor *user);
 void setCommands(editor *user);
 void delChar(editor *user);
 void parseKeySequence(editor *user);
