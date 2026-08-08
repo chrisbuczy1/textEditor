@@ -1,5 +1,5 @@
-#include "modes.h"
-#include "insertCommands.h"
+#include "normalMode.h"
+#include "cursorMovement.h"
 
 void mode(editor *user) {
     
@@ -23,13 +23,8 @@ void mode(editor *user) {
     }
 }
 
-// free memory
-void freeUser(editor *user) {
-    free(user->cList);
-    free(user->buffer);
-    free(user->insertCList);
-}
 
-void save(FILE **file) {
+
+void save(editor *user) {
     
 }

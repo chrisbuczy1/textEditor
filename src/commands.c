@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "types.h"
 #include <stdlib.h>
-#include "insertCommands.h"
+#include "cursorMovement.h"
 
 void insertMode(editor *user) {
     // while user doesn't input esc
@@ -77,22 +77,32 @@ void determineKey(editor *user) {
         
         switch (user->keySequence[2]) {
             case 'A':
-                printf(CURSOR_UP);
+                moveUp(user);
                 fflush(stdout);
                 break;
 
             case 'B':
-                printf(CURSOR_DOWN);
+                moveDown(user);
                 fflush(stdout);
                 break;
 
             case 'C':
-                printf(CURSOR_RIGHT);
+                moveRight(user);
                 fflush(stdout);
                 break;
 
             case 'D':
-                printf(CURSOR_LEFT);
+                moveLeft(user);
+                fflush(stdout);
+                break;
+            
+            case 'H':
+                moveHome(user);
+                fflush(stdout);
+                break;
+            
+            case 'F':
+                moveEnd(user);
                 fflush(stdout);
                 break;
         }
