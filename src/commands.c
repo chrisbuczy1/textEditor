@@ -95,6 +95,16 @@ void determineKey(editor *user) {
                 moveLeft(user);
                 fflush(stdout);
                 break;
+            
+            case 'H':
+                moveHome(user);
+                fflush(stdout);
+                break;
+            
+            case 'F':
+                moveEnd(user);
+                fflush(stdout);
+                break;
         }
     }
 

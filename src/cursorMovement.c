@@ -72,6 +72,24 @@ void moveDown(editor *user) {
     }
 }
 
+void moveHome(editor *user) {
+    if (user->xpos > 0) {
+        while (user->xpos != 0) {
+            user->xpos--;
+            printf(CURSOR_LEFT);
+        }
+    }
+}
+
+void moveEnd(editor *user) {
+    if (user->xpos < user->file.lines[user->ypos].length) {
+        while (user->xpos != user->file.lines[user->ypos].length) {
+            user->xpos++;
+            printf(CURSOR_RIGHT);
+        }
+    }
+}
+
 void pressedEsc(editor *user) {
 
 }

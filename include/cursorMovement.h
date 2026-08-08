@@ -9,10 +9,14 @@
 #define CURSOR_LEFT "\033[1D"
 
 void setInsertCommands(editor *user);
+
 void moveUp(editor *user);
 void moveRight(editor *user);
 void moveLeft(editor *user);
 void moveDown(editor *user);
+void moveHome(editor *user);
+void moveEnd(editor *user);
+
 void pressedEsc(editor *user);
 
 #endif
