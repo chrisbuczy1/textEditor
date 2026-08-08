@@ -1,12 +1,12 @@
-#include "modes.h"
-#include "main.h"
+#include "normalMode.h"
+#include "fileio.h"
 
 int main() {
-    printf(CLEAR);
-    printf(HOME);
+    
+    write(STDOUT_FILENO, CLEAR, 4);
+    write(STDOUT_FILENO, HOME, 3);
     fflush(stdout);
     // set beginning settings
-    char *fName = NULL;
     struct termios oldt, newt;
     editor user = {
         .xpos = 0,
@@ -24,7 +24,13 @@ int main() {
             .capacity = 30,
             .data = NULL
         },
-        .file = NULL,
+        .file = {
+            .numLines = NULL,
+            .lines = calloc(sizeof(line), 100),
+            .capacity = 100,
+            .file = NULL,
+            .name = NULL
+        },
         .keySequence = {0},
         .keySequenceLen = 0,
         .timeout = {
@@ -32,6 +38,11 @@ int main() {
             .tv_usec = 10000
         }
     };
+
+    // file stuff
+    getFile(&user);
+    openFile(&user);
+
     getSettings(&user);
     user.settings = user.old;
     
@@ -51,49 +62,9 @@ int main() {
     return 0;
 }
 
-// open file
-// void openFile(char *fName) {
-//     // open file
-//     FILE *edit = fopen(fName, "a+");
-//     if (edit == NULL) {
-//         printf("failed to open file! ");
-//         return;
-//     }
-    
-//     // display file
-//     printf("%s", CLEAR);
-//     size_t lineSize;
-//     char *line = NULL;
-//     while (getline(&line, &lineSize, edit) != -1) {
-//         printf("%s", line);
-//     }
-//     printf(HOME);
-// }
-
-// // get file name
-// void getFile(char **fName) {
-//     // get file name
-//     printf("enter a file name: ");
-//     size_t size;
-//     size_t len = getline(fName, &size, stdin);
-    
-    
-//     // get first string
-//     char *space = strchr(*fName, ' ');
-//     if (space == NULL) {
-//         if ((*fName)[len - 1] == '\n') {
-//             (*fName)[len - 1] = '\0';
-//         }
-//         return;
-//     }
-//     *space = '\0';
-// }
-
-// // get amount of chars in file
-// long getFileSize(FILE *file) {
-//     fseek(file, 0, SEEK_END);
-//     long size = ftell(file);
-//     rewind(file);
-    
-//     return size;
-// }
+// free memory
+void freeUser(editor *user) {
+    free(user->cList);
+    free(user->buffer);
+    free(user->insertCList);
+}

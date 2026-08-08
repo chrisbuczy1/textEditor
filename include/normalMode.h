@@ -1,13 +1,13 @@
-#ifndef MODES_H
-#define MODES_H
+#ifndef NORMALMODE_H
+#define NORMALMODE_H
 
 #include <stdbool.h>
 #include "settings.h"
 #include "commands.h"
-#define ESC 27
+
 
 void mode(editor *user);
-void save(FILE **file);
+void save(editor *user);
 void freeUser(editor *user);
 
 #endif
