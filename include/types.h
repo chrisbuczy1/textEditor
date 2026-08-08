@@ -3,6 +3,8 @@
 #define TYPES_H
 
 #include <sys/select.h>
+#include <termios.h>
+#include <stdio.h>
 
 #define CLEAR "\033[2J"
 #define HOME "\033[H"
@@ -30,7 +32,7 @@ struct file {
 
 struct buffer {
     char *buffer;
-    int bufferSize;
+    int size;
     int typeCount;
 };
 

@@ -14,7 +14,7 @@ int main() {
         .ypos = 0,
         .buffer = {
             .buffer = calloc(30, 1),
-            .bufferSize = 29,
+            .size = 29,
             .typeCount = 0
         },
         .cList = calloc(256, sizeof(func)),

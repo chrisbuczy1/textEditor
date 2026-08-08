@@ -1,18 +1,16 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
-SRC = $(wildcard src/*.c)
-OBJ = $(SRC:.c=.o)
-
 TARGET = myeditor
 
-all: $(TARGET) clean
+SRC = $(shell find src -name '*.c')
+OBJ = $(SRC:.c=.o)
 
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET)
 
-src/%.o: src/%.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(TARGET)

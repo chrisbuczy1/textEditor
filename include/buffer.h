@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "types.h"
+#include <stdlib.h>
 
 void doubleBuffer(editor *user);
 void addToBuffer(editor *user);
