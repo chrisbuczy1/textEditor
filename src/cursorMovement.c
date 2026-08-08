@@ -58,7 +58,16 @@ void moveRight(editor *user) {
 
 void moveDown(editor *user) {
     if (user->ypos < user->file.numLines) {
-        user->ypos++;
+
+        // if line above is smaller
+        if (user->xpos > user->file.lines[++user->ypos].length) {
+            while (user->xpos > user->file.lines[user->ypos].length) {
+                printf(CURSOR_LEFT);
+                user->xpos--;
+            }
+        }
+
+        // regular case
         printf(CURSOR_DOWN);
     }
 }
