@@ -1,4 +1,5 @@
 #include "insertMode.h"
+#include "buffer.h"
 
 void insertMode(editor *user) {
     // while user doesn't input esc
@@ -16,9 +17,7 @@ void insertMode(editor *user) {
         else {
             if (user->insertCList[user->keySequence[0]] != NULL) user->insertCList[user->keySequence[0]](user);
             else {
-                printf("%c", user->keySequence[0]);
-                fflush(stdout);
-                user->xpos++;
+                addToBuffer(user);
             }
         }
         

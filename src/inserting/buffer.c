@@ -1,5 +1,14 @@
 #include "buffer.h"
 
-void doubleBuffer(void **buffer, size_t elementSize, size_t size) {
-    *buffer = realloc(*buffer, (size * 2) * elementSize);
+void doubleBuffer(editor *user) {
+    user->buffer.buffer = realloc(user->buffer.buffer, (user->buffer.bufferSize) * 2);
+    user->buffer.bufferSize *= 2;
+}
+
+void addToBuffer(editor *user) {
+    if (user->buffer.typeCount == user->buffer.bufferSize) {
+        doubleBuffer(user);
+    }
+
+    
 }

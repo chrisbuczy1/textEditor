@@ -10,6 +10,7 @@
 
 typedef struct editor editor;
 typedef struct line line;
+typedef struct buffer buffer;
 
 typedef void (*func)(editor *);
 
@@ -27,13 +28,16 @@ struct file {
     char *name;
 };
 
-struct editor {
-    int xpos;
-    int ypos;
+struct buffer {
     char *buffer;
     int bufferSize;
     int typeCount;
-    int fileLines;
+};
+
+struct editor {
+    int xpos;
+    int ypos;
+    struct buffer buffer;
     char keySequence[6];
     int keySequenceLen;
     func *cList;

@@ -2,6 +2,7 @@
 #include "types.h"
 #include <stdlib.h>
 #include "cursorMovement.h"
+#include "insertMode.h"
 
 /*
 this function parses the bytes sent when user

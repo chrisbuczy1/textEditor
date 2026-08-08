@@ -6,15 +6,17 @@ int main() {
     write(STDOUT_FILENO, CLEAR, 4);
     write(STDOUT_FILENO, HOME, 3);
     fflush(stdout);
+
     // set beginning settings
     struct termios oldt, newt;
     editor user = {
         .xpos = 0,
         .ypos = 0,
-        .buffer = calloc(30, 1),
-        .bufferSize = 30,
-        .typeCount = 0,
-        .fileLines = 0,
+        .buffer = {
+            .buffer = calloc(30, 1),
+            .bufferSize = 29,
+            .typeCount = 0
+        },
         .cList = calloc(256, sizeof(func)),
         .insertCList = calloc(256, sizeof(func)),
         .settings = newt,
@@ -65,6 +67,10 @@ int main() {
 // free memory
 void freeUser(editor *user) {
     free(user->cList);
-    free(user->buffer);
+    free(user->buffer.buffer);
+    free(user->file.lines);
+    free(user->file.name);
+    free(user->cList);
+    free(user->insertCList);
     free(user->insertCList);
 }
