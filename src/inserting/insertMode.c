@@ -17,7 +17,7 @@ void insertMode(editor *user) {
         else {
             if (user->insertCList[user->keySequence[0]] != NULL) user->insertCList[user->keySequence[0]](user);
             else {
-                addToBuffer(user);
+                insertChar(user);
             }
         }
         
@@ -27,6 +27,16 @@ void insertMode(editor *user) {
     user->keySequence[0] = '\0';
 }
 
-void delChar(editor *user) {
+void insertChar(editor *user) {
+    int ypos = user->ypos;
+    int xpos = user->xpos;
 
+    user->file.lines[ypos].data[xpos++] = user->keySequence[0];
+}
+
+void delChar(editor *user) {
+    int ypos = user->ypos;
+    int xpos = user->xpos;
+
+    user->file.lines[ypos].data[xpos--] = NULL;
 }
