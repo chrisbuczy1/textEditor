@@ -12,20 +12,14 @@ int main() {
     editor user = {
         .xpos = 0,
         .ypos = 0,
-        .buffer = {
-            .buffer = calloc(30, 1),
-            .size = 29,
-            .typeCount = 0
+        .gap = {
+            .gapStart = 0,
+            .gapEnd = 0
         },
         .cList = calloc(256, sizeof(func)),
         .insertCList = calloc(256, sizeof(func)),
         .settings = newt,
         .old = oldt,
-        .currentLine = {
-            .length = 0,
-            .capacity = 30,
-            .data = NULL
-        },
         .file = {
             .numLines = NULL,
             .lines = calloc(sizeof(line), 100),
@@ -67,7 +61,6 @@ int main() {
 // free memory
 void freeUser(editor *user) {
     free(user->cList);
-    free(user->buffer.buffer);
     free(user->file.lines);
     free(user->file.name);
     free(user->cList);

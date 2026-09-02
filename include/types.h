@@ -9,10 +9,11 @@
 #define CLEAR "\033[2J"
 #define HOME "\033[H"
 #define ESC 27
+#define GAP_SIZE 64
 
 typedef struct editor editor;
 typedef struct line line;
-typedef struct buffer buffer;
+typedef struct gap gap;
 
 typedef void (*func)(editor *);
 
@@ -30,23 +31,21 @@ struct file {
     char *name;
 };
 
-struct buffer {
-    char *buffer;
-    int size;
-    int typeCount;
+struct gap {
+    int gapStart;
+    int gapEnd;
 };
 
 struct editor {
     int xpos;
     int ypos;
-    struct buffer buffer;
+    struct gap gap;
     char keySequence[6];
     int keySequenceLen;
     func *cList;
     func *insertCList;
     struct termios settings;
     struct termios old;
-    struct line currentLine;
     struct file file;
     struct timeval timeout;
 };

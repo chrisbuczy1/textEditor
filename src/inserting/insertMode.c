@@ -27,18 +27,6 @@ void insertMode(editor *user) {
     user->keySequence[0] = '\0';
 }
 
-// function to insert characters to buffer
-void insert(editor *user) {
-    if (user->buffer.typeCount - 1 < user->buffer.size) {
-        user->buffer.buffer[user->buffer.typeCount - 1] = user->keySequence[0];
-    } else {
-        user->buffer.size *= 2;
-        user->buffer.buffer = realloc(user->buffer.buffer, user->buffer.size);
-        user->buffer.buffer[user->buffer.typeCount - 1] = user->keySequence[0];
-    }
-    user->buffer.typeCount++;
-}
-
 void delChar(editor *user) {
 
 }
