@@ -30,13 +30,26 @@ void insertMode(editor *user) {
 void insertChar(editor *user) {
     int ypos = user->ypos;
     int xpos = user->xpos;
+    line *current = &user->file.lines[ypos];
 
-    user->file.lines[ypos].data[xpos++] = user->keySequence[0];
+    current->data[xpos++] = user->keySequence[0];
+    current->capacity--;
+    current->length--;
+    
+    redrawLine(user);
 }
 
 void delChar(editor *user) {
     int ypos = user->ypos;
     int xpos = user->xpos;
+    line *current = &user->file.lines[ypos];
 
-    user->file.lines[ypos].data[xpos--] = NULL;
+    if (current->length <= 1) {
+        user->file.lines[ypos].data[xpos--] = NULL;
+        current->capacity++;
+        current->length++;
+    }
+    
+
+    redrawLine(user);
 }

@@ -21,22 +21,26 @@ void createGap(editor *user) {
     int start = user->xpos;
     int end = start + GAP_SIZE;
     int ypos = user->ypos;
-    line current = user->file.lines[ypos];
+    line *current = &user->file.lines[ypos];
 
     // save gap position
     user->gap.gapStart = start;
     user->gap.gapEnd = end;
 
+    printf("Hi");
+
     // make gap
-    current.data = realloc(user->file.lines[ypos].data,
+    current->data = realloc(user->file.lines[ypos].data,
         user->file.lines[ypos].length + GAP_SIZE
     );
+    current->capacity += GAP_SIZE;
 
+    printf("Bye");
 
     // copy current text over gap
-    memmove(&current.data[start + GAP_SIZE],
-        &current.data[start],
-        current.length - start
+    memmove(&current->data[start + GAP_SIZE],
+        &current->data[start],
+        current->length - start
     );
 
 }
