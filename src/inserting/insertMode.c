@@ -32,9 +32,10 @@ void insertChar(editor *user) {
     int xpos = user->xpos;
     line *current = &user->file.lines[ypos];
 
+    if (current->length >= current->capacity) createGap(user);
+
     current->data[xpos++] = user->keySequence[0];
-    current->capacity--;
-    current->length--;
+    current->length++;
     
     redrawLine(user);
 }

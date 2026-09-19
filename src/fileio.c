@@ -33,6 +33,7 @@ void openFile(editor *user) {
 
     user->file.numLines--;
     user->file.lines[user->file.numLines].length++;
+    free(data);
     printf(HOME);
     fflush(stdout);
 }
