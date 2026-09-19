@@ -18,6 +18,7 @@ void mode(editor *user) {
             user->cList[ESC](user);
         }
 
+
         // for regular commands
         else if (user->cList[user->keySequence[0]] != NULL) user->cList[user->keySequence[0]](user);
     }

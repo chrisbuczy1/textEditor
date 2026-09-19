@@ -20,19 +20,25 @@ void restoreSettings(editor *user) {
 read() waits for a byte wether there is one or not
 this function sets a time interval where read() will stop looking for bytes after it
 */ 
-int readyToRead(editor *user) {
-    
-    // set FD_SET
+int readyToRead(editor *user)
+{
     fd_set set;
+
     FD_ZERO(&set);
     FD_SET(STDIN_FILENO, &set);
 
-    // return 1 if stdin has more bytes to read
-    return select(STDIN_FILENO + 1,
-    &set,
-    NULL,
-    NULL,
-    &user->timeout);
+    struct timeval timeout = {
+        .tv_sec = 0,
+        .tv_usec = 10000
+    };
+
+    return select(
+        STDIN_FILENO + 1,
+        &set,
+        NULL,
+        NULL,
+        &timeout
+    );
 }
 
 // get current settings
