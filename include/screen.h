@@ -2,6 +2,7 @@
 #define RENDERING_H
 
 #include "types.h"
+#include "cursorMovement.h"
 
 void redrawLine(editor *user);
 

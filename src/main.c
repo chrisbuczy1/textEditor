@@ -28,11 +28,7 @@ int main() {
             .name = NULL
         },
         .keySequence = {0},
-        .keySequenceLen = 0,
-        .timeout = {
-            .tv_sec = 0,
-            .tv_usec = 10000
-        }
+        .keySequenceLen = 0
     };
 
     // file stuff
@@ -64,6 +60,5 @@ void freeUser(editor *user) {
     free(user->file.lines);
     free(user->file.name);
     free(user->cList);
-    free(user->insertCList);
     free(user->insertCList);
 }

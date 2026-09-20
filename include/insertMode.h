@@ -4,6 +4,8 @@
 #include "types.h"
 #include <stdio.h>
 #include <unistd.h>
+#include "buffer.h"
+#include "cursorMovement.h"
 
 void insertMode(editor *user);
 void backspace(editor *user);

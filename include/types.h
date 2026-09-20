@@ -47,7 +47,6 @@ struct editor {
     struct termios settings;
     struct termios old;
     struct file file;
-    struct timeval timeout;
 };
 
 #endif

@@ -22,13 +22,13 @@ void openFile(editor *user) {
         printf("%s", data);
         fflush(stdout);
         
-        user->file.lines[user->file.numLines].length = len - 1;
-        user->file.lines[user->file.numLines].capacity = len - 1;
+        user->file.lines[user->file.numLines].length = len - 1; // len - 2 gives string len minus \n and \0
+        user->file.lines[user->file.numLines].capacity = len - 1; // len - 2 gives string len minus \n and \0
         user->file.lines[user->file.numLines].data = malloc(len);
 
         strcpy(user->file.lines[user->file.numLines].data, data);
         user->file.numLines++;
-         // len - 2 gives string len minus \n and \0
+         
     }
 
     user->file.numLines--;

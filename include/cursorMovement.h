@@ -17,6 +17,4 @@ void moveDown(editor *user);
 void moveHome(editor *user);
 void moveEnd(editor *user);
 
-void pressedEsc(editor *user);
-
 #endif

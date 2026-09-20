@@ -1,5 +1,4 @@
 #include "insertMode.h"
-#include "buffer.h"
 
 void insertMode(editor *user) {
     // while user doesn't input esc
@@ -53,4 +52,14 @@ void delChar(editor *user) {
     
 
     redrawLine(user);
+}
+
+void setInsertCommands(editor *user) {
+
+    // arrow key movement
+    user->insertCList[37] = moveLeft;
+    user->insertCList[38] = moveUp;
+    user->insertCList[39] = moveRight;
+    user->insertCList[40] = moveDown;
+    user->insertCList[ESC] = parseKeySequence;
 }
