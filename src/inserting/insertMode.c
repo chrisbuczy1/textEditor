@@ -2,13 +2,13 @@
 
 void insertMode(editor *user) {
     // while user doesn't input esc
-    while (user->keySequence[0] != ESC) {
-        int error = read(STDIN_FILENO, &(user->keySequence[0]), 1);
+    while (user->keySequence[0] != ESC && user->keySequenceLen != 1) {
         
         // if user presses key that sends multiple bytes
-        if (error != 1) {
-            read(STDIN_FILENO, user->keySequence[0], 1);
-            read(STDIN_FILENO, user->keySequence[1], 1);
+        int keySequence = read(STDIN_FILENO, &(user->keySequence[0]), 1);
+
+        if (user->keySequence[0] == ESC) {
+            user->keySequenceLen++;
             user->insertCList[ESC](user);
         }
 
@@ -34,6 +34,7 @@ void insertChar(editor *user) {
     if (current->length >= current->capacity) createGap(user);
 
     current->data[xpos++] = user->keySequence[0];
+    printf(CURSOR_RIGHT);
     current->length++;
     
     redrawLine(user);
