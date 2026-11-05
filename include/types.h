@@ -9,7 +9,7 @@
 #define CLEAR "\033[2J"
 #define HOME "\033[H"
 #define ESC 27
-#define GAP_SIZE 64
+
 
 typedef struct editor editor;
 typedef struct line line;

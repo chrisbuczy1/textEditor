@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define GAP_SIZE 10
+
 void createGap(editor *user);
 
 #endif

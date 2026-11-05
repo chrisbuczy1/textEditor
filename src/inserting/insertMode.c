@@ -1,4 +1,5 @@
 #include "insertMode.h"
+#include "test.h"
 
 void insertMode(editor *user) {
     // while user doesn't input esc
@@ -23,7 +24,7 @@ void insertMode(editor *user) {
         
     }
 
-    user->keySequence[0] = '\0';
+    memset(user->keySequence, '\0', sizeof(user->keySequence));
 }
 
 void insertChar(editor *user) {
@@ -33,11 +34,13 @@ void insertChar(editor *user) {
 
     if (current->length >= current->capacity) createGap(user);
 
-    current->data[xpos++] = user->keySequence[0];
-    printf(CURSOR_RIGHT);
+    current->data[xpos] = user->keySequence[0];
+    moveRight(user);
+    user->gap.gapStart++;
     current->length++;
     
     redrawLine(user);
+    // testPrint(current->data);
 }
 
 void delChar(editor *user) {

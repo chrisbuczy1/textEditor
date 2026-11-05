@@ -57,8 +57,11 @@ int main() {
 // free memory
 void freeUser(editor *user) {
     free(user->cList);
+    for (int i = 0; i < user->file.numLines; i++) {
+        free(user->file.lines[i].data);
+    }
     free(user->file.lines);
     free(user->file.name);
-    free(user->cList);
     free(user->insertCList);
+    
 }

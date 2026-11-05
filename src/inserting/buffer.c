@@ -36,7 +36,12 @@ void createGap(editor *user) {
     // copy current text over gap
     memmove(&current->data[start + GAP_SIZE],
         &current->data[start],
-        current->length - start
+        current->length - user->xpos
     );
+
+    // for testing
+    for (int i = start; i < GAP_SIZE; i++) {
+        current->data[i] = '\0';
+    }
 
 }
