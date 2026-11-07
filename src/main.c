@@ -21,7 +21,7 @@ int main() {
         .settings = newt,
         .old = oldt,
         .file = {
-            .numLines = NULL,
+            .numLines = 0,
             .lines = calloc(sizeof(line), 100),
             .capacity = 100,
             .file = NULL,

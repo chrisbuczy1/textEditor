@@ -1,5 +1,6 @@
 #include "normalMode.h"
 #include "types.h"
+#include "fileio.h"
 
 // open file
 void openFile(editor *user) {

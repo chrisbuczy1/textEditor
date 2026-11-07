@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "types.h"
 #include <string.h>
+#include "settings.h"
 
 
 
