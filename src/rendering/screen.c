@@ -8,27 +8,20 @@ void redrawLine(editor *user) {
     moveHome(user);
 
     for (int i = 0; i < user->gap.gapStart; i++) {
-        putchar(current.data[xpos]);
-        moveRight(user);
+        printf("%c", current.data[i]);
+        xpos++;
     }
 
     for (int i = user->gap.gapEnd; i < current.capacity; i++) {
-        putchar(current.data[xpos]);
-        moveRight(user);
+        printf("%c", current.data[i]);
+        xpos++;
     }
-//     int xpos = user->xpos;
-//     line current = user->file.lines[user->ypos];
 
-//     CLEAR_LINE;
-//     moveHome(user);
-
-//     printf("%s", user->file.lines[user->ypos].data);
-//     printf(CURSOR_UP);
-
-//     while (user->xpos < xpos) {
-//         printf(CURSOR_RIGHT);
-//         user->xpos++;
-//     }
+    // printf("%d userxpos", user->xpos);
+    while (xpos > user->xpos) {
+        printf(CURSOR_LEFT);
+        xpos--;
+    }
 
     fflush(stdout);
 }

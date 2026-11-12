@@ -5,9 +5,11 @@
 #include "types.h"
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <stdbool.h>
 
 #define GAP_SIZE 10
 
-void createGap(editor *user);
+bool createGap(editor *user);
 
 #endif

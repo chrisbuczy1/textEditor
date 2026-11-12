@@ -17,31 +17,37 @@
 // }
 
 // adds character from buffer to line
-void createGap(editor *user) {
+bool createGap(editor *user) {
     int start = user->xpos;
     int end = start + GAP_SIZE;
     int ypos = user->ypos;
     line *current = &user->file.lines[ypos];
 
+    // make gap
+    char *newData = realloc(current->data,
+        current->capacity + GAP_SIZE
+    );
+
+    if (newData == NULL) return false;
+
+    current->data = newData;
+    current->capacity += GAP_SIZE;
+
+    // copy current text over gap
+    memmove(&current->data[end],
+        &current->data[start],
+        current->length - start
+    );
+
+    // for testing
+    // for (int i = start; i < GAP_SIZE; i++) {
+    //     current->data[i] = '\0';
+    // }
+
     // save gap position
     user->gap.gapStart = start;
     user->gap.gapEnd = end;
 
-    // make gap
-    current->data = realloc(user->file.lines[ypos].data,
-        user->file.lines[ypos].length + GAP_SIZE
-    );
-    current->capacity += GAP_SIZE;
-
-    // copy current text over gap
-    memmove(&current->data[start + GAP_SIZE],
-        &current->data[start],
-        current->length - user->xpos
-    );
-
-    // for testing
-    for (int i = start; i < GAP_SIZE; i++) {
-        current->data[i] = '\0';
-    }
+    return true;
 
 }

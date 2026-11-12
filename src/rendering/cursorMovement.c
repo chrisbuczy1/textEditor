@@ -1,7 +1,6 @@
 #include "cursorMovement.h"
 
 void moveLeft(editor *user) {
-
     // regular left movement
     if (user->xpos > 0) {
         user->xpos--;

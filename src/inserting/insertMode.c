@@ -34,9 +34,8 @@ void insertChar(editor *user) {
 
     if (current->length >= current->capacity) createGap(user);
 
-    current->data[xpos] = user->keySequence[0];
+    current->data[user->gap.gapStart++] = user->keySequence[0];
     moveRight(user);
-    user->gap.gapStart++;
     current->length++;
     
     redrawLine(user);
