@@ -39,7 +39,6 @@ void insertChar(editor *user) {
     current->length++;
     
     redrawLine(user);
-    // testPrint(current->data);
 }
 
 // void delChar(editor *user) {

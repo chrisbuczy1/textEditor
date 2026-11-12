@@ -9,18 +9,18 @@ void redrawLine(editor *user) {
 
     for (int i = 0; i < user->gap.gapStart; i++) {
         printf("%c", current.data[i]);
-        xpos++;
+        user->xpos++;
     }
 
     for (int i = user->gap.gapEnd; i < current.capacity; i++) {
         printf("%c", current.data[i]);
-        xpos++;
+        user->xpos++;
     }
 
-    // printf("%d userxpos", user->xpos);
-    while (xpos > user->xpos) {
-        printf(CURSOR_LEFT);
-        xpos--;
+    moveHome(user);
+    while (user->xpos < xpos) {
+        printf(CURSOR_RIGHT);
+        user->xpos++;
     }
 
     fflush(stdout);
